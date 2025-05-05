@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - ReservaTuClase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header class="bg-primary text-white p-3 mb-4 navbar navbar-dark bg-inverse navbar-toggleable-sm">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3">ReservaTuClase - Admin</h1>
+                <button class="navbar-toggler navbar-toggler-right d-md-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <nav class="collapse d-md-flex navbar-collapse-sm" id="navbarNav">
+                <ul class="nav navbar-nav-sm flex-column flex-md-row">
+                    <li class="nav-item"><a href="../index.html" class="nav-link text-white">Inicio</a></li>
+                    <li class="nav-item"><a href="../clases/listado.html" class="nav-link text-white">Lista de
+                            Clases</a></li>
+                    <li class="nav-item panel-usuario-link"><a href="../cliente/panel.html"
+                            class="nav-link text-white">Panel de Usuario</a></li>
+                    <li class="nav-item panel-admin-link"><a href="../admin/panel.html"
+                            class="nav-link text-white">Panel de Admin</a></li>
+                    <li class="nav-item login-link"><a href="../login.html" class="nav-link text-white">Iniciar
+                            Sesión</a></li>
+                    <li class="nav-item logout-link d-none"><a href="#" id="logoutBtn" class="btn btn-danger">Cerrar
+                            Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="text-center mb-4">Panel de Administración</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Lista de Usuarios</h5>
+                        <p class="card-text">Gestiona los usuarios registrados</p>
+                        <a href="lista-usuarios.html" class="btn btn-primary w-100">Ver Usuarios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Alta de Usuario</h5>
+                        <p class="card-text">Registra un nuevo usuario</p>
+                        <a href="alta-usuario.html" class="btn btn-primary w-100">Crear Usuario</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Alta de Clase</h5>
+                        <p class="card-text">Crea una nueva clase</p>
+                        <a href="alta-clase.html" class="btn btn-primary w-100">Crear Clase</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-md-4 offset-md-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Lista de Clases</h5>
+                        <p class="card-text">Consulta y gestiona las clases</p>
+                        <a href="../clases/listado.html" class="btn btn-primary w-100">Ver Clases</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-light text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2025 ReservaTuClase. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
