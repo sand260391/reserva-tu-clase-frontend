@@ -2,9 +2,9 @@ $(document).ready(function () {
   // Obtener datos del usuario desde el almacenamiento local
   const userData = JSON.parse(localStorage.getItem('user'));
 
-  // Redirigir al usuario si no tiene el rol de ADMIN
-  if (!userData || !userData.value.rol.includes('ADMIN')) {
-    window.location.href = "../index.html";
+  // Redirigir al usuario si no tiene el rol de ADMIN o MONITOR
+  if (!userData || (!userData.value.rol.includes('ADMIN') && !userData.value.rol.includes('MONITOR'))) {
+    window.location.href = "/index.html";
     return;
   }
 

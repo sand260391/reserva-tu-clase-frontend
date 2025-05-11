@@ -36,7 +36,10 @@ function mostrarNotificaciones(notificaciones) {
   pendientes.forEach(n => {
     htmlPendientes += `
       <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-        <div>${n.mensaje}</div>
+        <div>
+          <div>${n.mensaje}</div>
+          <small class="text-muted">Fecha: ${new Date(n.fechaCreacion).toLocaleString()}</small>
+        </div>
         <button class="btn btn-sm btn-success" onclick="marcarComoLeida(${n.id})">Marcar como leída</button>
       </li>
     `;
@@ -50,7 +53,10 @@ function mostrarNotificaciones(notificaciones) {
   leidas.forEach(n => {
     htmlLeidas += `
       <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
-        <div>${n.mensaje}</div>
+        <div>
+          <div>${n.mensaje}</div>
+          <small class="text-muted">Fecha: ${new Date(n.fechaCreacion).toLocaleString()}</small>
+        </div>
       </li>
     `;
   });

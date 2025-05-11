@@ -65,6 +65,15 @@ function obtenerMonitores() {
   });
 }
 
+// Función para obtener todos los clientes
+function obtenerClientes() {
+  return $.ajax({
+    url: `${API_URL}/usuarios/clientes`,
+    method: "GET",
+    headers: authHeader()
+  });
+}
+
 // Función para obtener un usuario por ID
 function obtenerUsuario(id) {
   return $.ajax({
@@ -150,6 +159,26 @@ function obtenerTiposClase() {
   });
 }
 
+// Función para crear un nuevo tipo de clase
+function crearTipoClase(tipoClase) {
+  return $.ajax({
+    url: `${API_URL}/tipos-clase`,
+    method: "POST",
+    contentType: "application/json",
+    headers: authHeader(),
+    data: JSON.stringify(tipoClase)
+  });
+}
+
+// Función para eliminar un tipo de clase
+function eliminarTipoClase(id) {
+  return $.ajax({
+    url: `${API_URL}/tipos-clase/${id}`,
+    method: "DELETE",
+    headers: authHeader()
+  });
+}
+
 // ------------------------
 // Reservas
 // ------------------------
@@ -178,6 +207,15 @@ function cancelarReserva(id) {
 function obtenerReservasCliente(clienteId) {
   return $.ajax({
     url: `${API_URL}/reservas/cliente/${clienteId}`,
+    method: "GET",
+    headers: authHeader()
+  });
+}
+
+// Función para obtener las reservas de una clase específica
+function obtenerReservasClase(claseId) {
+  return $.ajax({
+    url: `${API_URL}/reservas/clase/${claseId}`,
     method: "GET",
     headers: authHeader()
   });
@@ -257,6 +295,17 @@ function marcarNotificacionLeida(id) {
   });
 }
 
+// Función para enviar una notificación a un cliente
+function enviarNotificacion(notificacion) {
+  return $.ajax({
+    url: `${API_URL}/notificaciones`,
+    method: "POST",
+    contentType: "application/json",
+    headers: authHeader(),
+    data: JSON.stringify(notificacion)
+  });
+}
+
 // ------------------------
 // Evaluaciones
 // ------------------------
@@ -286,6 +335,24 @@ function obtenerEvaluacionesMonitor(monitorId) {
   return $.ajax({
     url: `${API_URL}/evaluaciones/monitor/${monitorId}`,
     method: "GET",
+    headers: authHeader()
+  });
+}
+
+// Función para obtener todas las evaluaciones
+function obtenerTodasEvaluaciones() {
+  return $.ajax({
+    url: `${API_URL}/evaluaciones`,
+    method: "GET",
+    headers: authHeader()
+  });
+}
+
+// Función para eliminar una evaluación
+function eliminarEvaluacion(id) {
+  return $.ajax({
+    url: `${API_URL}/evaluaciones/${id}`,
+    method: "DELETE",
     headers: authHeader()
   });
 }

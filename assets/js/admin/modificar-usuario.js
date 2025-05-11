@@ -8,7 +8,7 @@ $(document).ready(function () {
 
   // Redirigir al usuario si no tiene el rol de ADMIN
   if (!userData || !userData.value.rol.includes('ADMIN')) {
-    window.location.href = "../index.html";
+    window.location.href = "/index.html";
     return;
   }
 

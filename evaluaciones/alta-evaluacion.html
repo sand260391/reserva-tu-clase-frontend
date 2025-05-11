@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alta de Clase - Admin</title>
+  <title>Alta de Evaluación</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
+
   <header class="bg-primary text-white p-3 mb-4 navbar navbar-dark bg-inverse navbar-toggleable-sm">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-        <h1 class="h3">ReservaTuClase - Admin</h1>
+        <h1 class="h3">ReservaTuClase</h1>
         <button class="navbar-toggler navbar-toggler-right d-md-none" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -22,14 +23,14 @@
       <nav class="collapse d-md-flex navbar-collapse-sm" id="navbarNav">
         <ul class="nav navbar-nav-sm flex-column flex-md-row">
           <li class="nav-item"><a href="/index.html" class="nav-link text-white">Inicio</a></li>
-          <li class="nav-item"><a href="/clases/listado.html" class="nav-link text-white">Lista de
-              Clases</a></li>
+          <li class="nav-item"><a href="/clases/listado.html" class="nav-link text-white">Lista de Clases</a>
+          </li>
           <li class="nav-item panel-usuario-link"><a href="/cliente/panel.html" class="nav-link text-white">Panel de
               Usuario</a></li>
           <li class="nav-item panel-admin-link"><a href="/admin/panel.html" class="nav-link text-white">Panel
               de Admin</a></li>
-          <li class="nav-item login-link"><a href="/login.html" class="nav-link text-white">Iniciar
-              Sesión</a></li>
+          <li class="nav-item login-link"><a href="/login.html" class="nav-link text-white">Iniciar Sesión</a>
+          </li>
           <li class="nav-item logout-link d-none"><a href="#" id="logoutBtn" class="btn btn-danger">Cerrar
               Sesión</a></li>
         </ul>
@@ -38,48 +39,49 @@
   </header>
 
   <main class="container">
-    <h2 class="mb-4">Alta de Clase</h2>
-    <form id="formAltaClase">
+    <h2 class="mb-4">Crear Evaluación</h2>
+    <form id="formAltaEvaluacion">
       <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required />
-      </div>
-      <div class="mb-3">
-        <label for="tipoClase" class="form-label">Tipo de Clase</label>
-        <select class="form-control" id="tipoClase" required>
-          <!-- Opciones dinámicas -->
+        <label for="evaluacionTipo" class="form-label">Evaluar</label>
+        <select class="form-control" id="evaluacionTipo" required>
+          <option value="">Seleccione...</option>
+          <option value="monitor">Monitor</option>
+          <option value="tipoClase">Tipo de Clase</option>
         </select>
       </div>
-      <div class="mb-3">
+      <div class="alert alert-info" id="infoEvaluacion">
+        Las evaluaciones realizadas para un tipo de clase serán públicas.<br>
+        Las evaluaciones realizadas para un monitor serán visibles solo por dicho monitor y los administradores de la
+        aplicación.
+      </div>
+      <div class="mb-3 d-none" id="monitorField">
         <label for="monitor" class="form-label">Monitor</label>
-        <select class="form-control" id="monitor" required>
+        <select class="form-control" id="monitor">
+          <!-- Opciones dinámicas -->
+        </select>
+      </div>
+      <div class="mb-3 d-none" id="tipoClaseField">
+        <label for="tipoClase" class="form-label">Tipo de Clase</label>
+        <select class="form-control" id="tipoClase">
           <!-- Opciones dinámicas -->
         </select>
       </div>
       <div class="mb-3">
-        <label for="horaInicio" class="form-label">Fecha y Hora de Inicio</label>
-        <input type="datetime-local" class="form-control" id="horaInicio" required />
+        <label for="calificacion" class="form-label">Calificación</label>
+        <input type="number" class="form-control" id="calificacion" min="1" max="10" required />
       </div>
       <div class="mb-3">
-        <label for="horaFin" class="form-label">Fecha y Hora de Fin</label>
-        <input type="datetime-local" class="form-control" id="horaFin" required />
+        <label for="comentario" class="form-label">Comentario</label>
+        <textarea class="form-control" id="comentario" rows="3"></textarea>
       </div>
-      <div class="mb-3">
-        <label for="sala" class="form-label">Sala</label>
-        <input type="text" class="form-control" id="sala" required />
-      </div>
-      <div class="mb-3">
-        <label for="capacidadMaxima" class="form-label">Capacidad Máxima</label>
-        <input type="number" class="form-control" id="capacidadMaxima" required />
-      </div>
-      <button type="submit" class="btn btn-primary">Crear Clase</button>
+      <button type="submit" class="btn btn-primary">Crear Evaluación</button>
     </form>
     <div id="mensaje" class="mt-3"></div>
   </main>
 
-  <script src="../assets/js/api.js"></script>
-  <script src="../assets/js/nav.js"></script>
-  <script src="../assets/js/admin/alta-clase.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/nav.js"></script>
+  <script src="/assets/js/evaluaciones/alta-evaluacion.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

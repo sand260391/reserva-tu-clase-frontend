@@ -32,6 +32,7 @@ $(document).ready(function () {
       // Generar el HTML del formulario con los detalles de la clase
       const detalleHtml = `
         <form id="detalleClaseForm">
+          <h2 class="mb-4">Detalles de la Clase</h2>
           <!-- Campo para el nombre de la clase -->
           <div class="mb-3">
             <label for="nombreClase" class="form-label">Nombre</label>
@@ -108,6 +109,25 @@ $(document).ready(function () {
         });
       }
 
+      obtenerEvaluacionesTipoClase(clase.tipoClase.id)
+        .done(function (evaluaciones) {
+          if (evaluaciones.length > 0) {
+            const evaluacionesHtml = evaluaciones.map(evaluacion => `
+              <tr>
+                <td>${evaluacion.cliente.nombre}</td>
+                <td>${evaluacion.calificacion}</td>
+                <td>${evaluacion.comentario}</td>
+              </tr>
+            `).join('');
+            $('#tablaEvaluaciones').html(evaluacionesHtml);
+          } else {
+            $('#tablaEvaluaciones').html('<tr><td colspan="3" class="text-center">No hay evaluaciones disponibles.</td></tr>');
+          }
+        })
+        .fail(function () {
+          $('#tablaEvaluaciones').html('<tr><td colspan="3" class="text-center text-danger">Error al cargar las evaluaciones.</td></tr>');
+        });
+
       if (esEditable) {
         $('#actualizarClaseBtn').click(function () {
           const claseActualizada = {
@@ -150,6 +170,28 @@ $(document).ready(function () {
       // Mostrar mensaje de error si no se pueden cargar los detalles de la clase
       $('#detalleClase').html('<p class="text-center text-danger">Error al cargar los detalles de la clase.</p>');
     });
+
+  const usuario = JSON.parse(localStorage.getItem('user'));
+  if (usuario && (usuario.value.rol === 'ADMIN' || usuario.value.rol === 'MONITOR')) {
+    $('#reservasClase').removeClass('d-none');
+    obtenerReservasClase(claseId)
+      .done(function (reservas) {
+        if (reservas.length > 0) {
+          const reservasHtml = reservas.map(reserva => `
+            <tr>
+              <td>${reserva.nombreCliente} ${reserva.apellidosCliente}</td>
+              <td>${new Date(reserva.fechaReserva).toLocaleString("es-ES")}</td>
+            </tr>
+          `).join('');
+          $('#tablaReservasClase').html(reservasHtml);
+        } else {
+          $('#tablaReservasClase').html('<tr><td colspan="3" class="text-center">No hay reservas actuales.</td></tr>');
+        }
+      })
+      .fail(function () {
+        $('#tablaReservasClase').html('<tr><td colspan="3" class="text-center text-danger">Error al cargar las reservas.</td></tr>');
+      });
+  }
 
   // Función para mostrar las acciones disponibles para el cliente
   function mostrarAccionesCliente(claseId, capacidadMaxima, plazasReservadas) {
@@ -241,3 +283,12 @@ $(document).ready(function () {
       });
   }
 });
+
+// Function to fetch reservations for the class
+function obtenerReservasClase(claseId) {
+  return $.ajax({
+    url: `${API_URL}/reservas/clase/${claseId}`,
+    method: "GET",
+    headers: authHeader()
+  });
+}

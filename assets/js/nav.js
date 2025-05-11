@@ -21,14 +21,18 @@ $(document).ready(function () {
     $('.logout-link').removeClass('d-none');
 
     // Obtener roles del usuario
-    const roles = user.rol || [];
+    const rol = user.rol || [];
 
-    if (roles.includes('ADMIN')) {
-      // Mostrar el enlace al panel de administrador si el usuario es ADMIN
+    // Actualizar el título con el rol del usuario
+    const rolTexto = rol === 'ADMIN' ? 'Admin' : rol === 'MONITOR' ? 'Monitor' : 'Cliente';
+    $('h1.h3').text(`ReservaTuClase - ${rolTexto}`);
+
+    if (rol == 'ADMIN' || rol == 'MONITOR') {
+      // Mostrar el enlace al panel de administrador si el usuario es ADMIN/MONITOR+
       $('.panel-admin-link').removeClass('d-none');
       $('.panel-usuario-link').addClass('d-none'); // Ocultar el panel de usuario
     } else {
-      // Ocultar el enlace al panel de administrador si no es ADMIN
+      // Ocultar el enlace al panel de administrador si no es ADMIN/MONITOR
       $('.panel-admin-link').addClass('d-none');
     }
   } else {
